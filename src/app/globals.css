@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --header-h: 72px;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+
+  body {
+    @apply bg-ink text-bone font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Headlines are condensed, tight and uppercase — the sports-brand voice. */
+  h1,
+  h2,
+  h3,
+  .display {
+    @apply font-display uppercase tracking-tightest;
+    font-weight: 800;
+    line-height: 0.92;
+  }
+
+  ::selection {
+    background: #e31e24;
+    color: #f6f7f8;
+  }
+
+  :focus-visible {
+    outline: 2px solid #e31e24;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Scrollbars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b0c0e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #282d33;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a4048;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.22em] text-accent;
+  }
+
+  .btn {
+    @apply inline-flex max-w-full select-none items-center justify-center gap-2 whitespace-nowrap rounded-full font-display text-sm font-bold uppercase tracking-[0.12em] transition-all duration-200 active:scale-[.97] disabled:pointer-events-none disabled:opacity-40;
+  }
+
+  /* Tighter on small screens: long labels such as "Place order on
+     WhatsApp" otherwise push past a 320 px viewport. */
+  .btn-lg {
+    @apply h-[52px] px-5 text-[13px] sm:px-7 sm:text-[15px];
+  }
+
+  .btn-md {
+    @apply h-11 px-5;
+  }
+
+  .btn-sm {
+    @apply h-9 px-4 text-xs;
+  }
+
+  /* White on brand red — unlike the old lime, red needs light type on it. */
+  .btn-accent {
+    @apply bg-accent text-white hover:bg-accent-soft hover:shadow-glow;
+  }
+
+  .btn-light {
+    @apply bg-bone text-ink hover:bg-white;
+  }
+
+  .btn-outline {
+    @apply border border-white/25 bg-white/0 text-bone hover:border-accent hover:text-accent;
+  }
+
+  .btn-ghost {
+    @apply text-bone/70 hover:bg-white/5 hover:text-bone;
+  }
+
+  .btn-wa {
+    @apply bg-[#25D366] text-[#052E16] hover:bg-[#3ee27b];
+  }
+
+  .card {
+    @apply rounded-card border border-white/10 bg-ink-800/80 backdrop-blur-sm;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/12 px-3 py-1.5 text-xs font-medium text-bone/70 transition-colors hover:border-white/30 hover:text-bone;
+  }
+
+  .chip-on {
+    @apply border-accent/70 bg-accent/10 text-accent;
+  }
+
+  .field {
+    @apply w-full rounded-lg border border-white/12 bg-ink-900 px-3.5 py-2.5 text-sm text-bone placeholder:text-bone-400/60 transition-colors focus:border-accent focus:outline-none;
+  }
+
+  .label {
+    @apply mb-2 block font-display text-[11px] font-bold uppercase tracking-[0.18em] text-bone-400;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  /* Horizontal snap rails used by mobile category + product scrollers */
+  .rail {
+    @apply flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4;
+    scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+  .rail > * {
+    @apply snap-start;
+  }
+
+  .hairline {
+    @apply border-white/10;
+  }
+
+  .stack-fade {
+    mask-image: linear-gradient(to bottom, #000 78%, transparent);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Diagonal energy line used behind section headings */
+  .slash-bg {
+    background-image: repeating-linear-gradient(
+      -55deg,
+      rgba(255, 255, 255, 0.05) 0 2px,
+      transparent 2px 10px
+    );
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 1px
+    );
+    background-size: 3px 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
